@@ -70,14 +70,14 @@ class Myhomework extends StatelessWidget {
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          const Expanded(
+                          Expanded(
                             child: Text(
                               'Lorem ipsum, dolor sit amet consectetur adipisicing elit.  Deserunt, nemo at? Aut, excepturi perferendisDeserunt, nemo at? Aut, excepturi perferendis.',
                               style: TextStyle(color: Colors.white),
                             ),
                           ),
-                          const SizedBox(width: 8),
-                          const Icon(
+                          SizedBox(width: 8),
+                          Icon(
                             Icons.arrow_circle_right_outlined,
                             color: Colors.white,
                             size: 35,

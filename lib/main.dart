@@ -1,8 +1,33 @@
+import 'package:bookfly/program.dart';
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(Myhomework());
 }
+
+List<Program> programs = [
+  Program(
+    1,
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzdH04GNuSr0JHScI-NtRRfRW_-7cQ49RV0EW96Cc7iw&s=10',
+    '1:00-2:00',
+    'Next.js',
+    'Next js is a class of programming',
+  ),
+  Program(
+    2,
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREEMjzsllP9LWmOgtgFn0bzYlWw6a5dGSZNmd5xS0GZQ&s=10',
+    '2:00-3:00',
+    'Flutter',
+    'Flutter is a class of programming',
+  ),
+  Program(
+    3,
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5_YfHGWyIp9hxgfp7OLAeVoSvW3764xwttlaMgOXoKg&s=10',
+    '3:00-4:00',
+    'Css',
+    'Css is a class of programming',
+  ),
+];
 
 class Myhomework extends StatelessWidget {
   @override
@@ -11,81 +36,81 @@ class Myhomework extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(title: Text('App Bar')),
-        body: Container(
-          width: double.infinity,
-
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                width: MediaQuery.sizeOf(context).width * 0.8,
-                height: 400,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(24.0),
-                  gradient: LinearGradient(
-                    colors: [Color(0xfffc0fc0), Color(0xfffa003f)],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(24.0),
-                        topLeft: Radius.circular(24.0),
-                      ),
-                      child: Image.network(
-                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRB-hi9xf3PCViOmiXLtzitRQ-5soLH6RylHk1Pla0jA&s=10',
-                        height: 150.9,
-                        width: double.infinity,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'Flutter Development',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w800,
-                          fontSize: 30,
+              Text('Available Programs'),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: programs.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 6),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(24),
+                          gradient: index % 2 == 0
+                              ? LinearGradient(
+                                  begin: Alignment.bottomRight,
+                                  end: Alignment.topLeft,
+                                  colors: [
+                                    Color(0xffe8e9eb),
+                                    Color(0xffacada8),
+                                  ],
+                                )
+                              : LinearGradient(
+                                  begin: Alignment.bottomRight,
+                                  end: Alignment.topLeft,
+                                  colors: [
+                                    Colors.brown.shade200,
+                                    Colors.brown.shade600,
+                                  ],
+                                ),
                         ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        '1:40 - 2:40',
-                        style: TextStyle(
-                          color: Colors.grey.shade300,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Expanded(
-                            child: Text(
-                              'Lorem ipsum, dolor sit amet consectetur adipisicing elit.  Deserunt, nemo at? Aut, excepturi perferendisDeserunt, nemo at? Aut, excepturi perferendis.',
-                              style: TextStyle(color: Colors.white),
+                        width: MediaQuery.sizeOf(context).width * 0.8,
+                        // height: ,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(24),
+                                topRight: Radius.circular(24),
+                              ),
+                              child: Image.network(
+                                programs[index].imageUrl,
+                                height: 150,
+                                width: double.infinity,
+                                fit: BoxFit.cover,
+                              ),
                             ),
-                          ),
-                          SizedBox(width: 8),
-                          Icon(
-                            Icons.arrow_circle_right_outlined,
-                            color: Colors.white,
-                            size: 35,
-                          ),
-                        ],
+                            Text(
+                              programs[index].title,
+                              // style: ,
+                            ),
+                            Text(programs[index].time),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                                vertical: 8,
+                              ),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(programs[index].describtion),
+                                  ),
+                                  Icon(Icons.arrow_circle_right_outlined),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    );
+                  },
                 ),
               ),
             ],

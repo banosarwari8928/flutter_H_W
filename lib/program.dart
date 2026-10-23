@@ -3,5 +3,6 @@ class Program {
   final String imageUrl;
   final String title;
   final String time;
-  Program(this.id, this.imageUrl, this.time, this.title);
+  final String describtion;
+  Program(this.id, this.imageUrl, this.time, this.title, this.describtion);
 }
